@@ -1,0 +1,28 @@
+{
+  "name": "moreauth2424",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "dependencies": {
+    "@google-cloud/datastore": "^6.3.0",
+    "auth0-js": "^9.8.2",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "express-jwt": "^5.3.3",
+    "google-gax": "^2.9.2",
+    "json-to-html": "^0.1.2",
+    "jsonwebtoken": "^8.3.0",
+    "jwks-rsa": "^1.11.0",
+    "node-json2html": "^1.4.0",
+    "node-pre-gyp": "^0.11.0",
+    "nodejs": "0.0.0",
+    "request": "^2.88.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Brandon Withington",
+  "license": "ISC"
+}

@@ -1,0 +1,24 @@
+{
+  "name": "oath2pointoh",
+  "version": "1.0.0",
+  "description": "Program to use OAuth 2.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Brandon Withington",
+  "license": "ISC",
+  "dependencies": {
+    "@google-cloud/datastore": "^1.4.2",
+    "body-parser": "^1.13.3",
+    "es6-promise": "^4.2.5",
+    "express": "^4.17.1",
+    "express-handlebars": "^2.0.1",
+    "express-session": "^1.11.3",
+    "google-gax": "^0.20.0",
+    "isomorphic-fetch": "^2.2.1",
+    "mysql": "^2.8.0",
+    "node-fetch": "^2.2.1"
+  }
+}

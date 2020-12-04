@@ -1,0 +1,24 @@
+
+<link href="style.css" rel="stylesheet" type="text/css"/>
+
+<h1> This website app would like permission to connect to your Google account:</h1>
+<p>This website app was built for my cs493 Cloud API class. It was made to learn about how OAuth 2.0 authorization schemes work.
+    The site will gather name data about your Google account, from your Google account. It will then display your account's 
+    name data on the next webpage. This will include your first name and last name data.</p>
+    <legend>Do you consent?  </legend>
+<div class="buttons">
+    
+        
+        <form  action = "https://accounts.google.com/o/oauth2/v2/auth?response_type=code&client_id=205044639182-ra4ihrhrfk11ljggt9ilpmvctn61jvt1.apps.googleusercontent.com&redirect_uri=https://oath2pointoh.wn.r.appspot.com/oauth&scope=https://www.googleapis.com/auth/userinfo.profile&state=tz8cYMM5fg-gyrtZagGW4lU0" method = "get">
+            <input type=hidden name = "response_type" value = "code">
+            <input type = hidden name = "client_id" value = {{client_id}}>
+            <input type = hidden name = "redirect_uri" value = {{redirect_uri}}>
+            <input type = hidden name = "scope"  value = "https://www.googleapis.com/auth/userinfo.profile">
+            <input type = hidden name = "state" value ={{state}}>
+            <input id="my_button" class ="buttons" type="submit" >
+        </form>
+    
+
+</div>
+</br>
+<script src="button.js"></script>

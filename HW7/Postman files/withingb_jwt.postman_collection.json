@@ -1,0 +1,1090 @@
+{
+	"info": {
+		"_postman_id": "60de0056-3ae4-4ca8-8288-0f64b8ba5c01",
+		"name": "Assignment #7 tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Attempt to retrieve a boat while not logged in. || 401 status code",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a9d6d6b0-3af7-4b2e-994f-8f7531784d2e",
+						"exec": [
+							"\r",
+							"pm.test(\"Status code is 401\", function () {\r",
+							"    pm.response.to.have.status(401);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://moreauth2424.wl.r.appspot.com/boats/{{boat_id}}",
+					"protocol": "https",
+					"host": [
+						"moreauth2424",
+						"wl",
+						"r",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"boats",
+						"{{boat_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LOGGING IN WITH SAMPLE EMAIL AND PASSWORD",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e04e9e24-f119-43d3-8c8f-12f30f45aeb5",
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"pm.environment.set(\"id_token\", jsonData.id_token);\r",
+							"\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"hmmmm@yahoo.com\",\r\n    \"password\": \"password123!\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://moreauth2424.wl.r.appspot.com/login",
+					"protocol": "https",
+					"host": [
+						"moreauth2424",
+						"wl",
+						"r",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"login"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LOCAL TEST LOGGING IN WITH SAMPLE EMAIL AND PASSWORD",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5b24a816-78c9-443c-a3a2-8b59093df0d0",
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"pm.environment.set(\"id_token\", jsonData.id_token);\r",
+							"\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"hmmmm@yahoo.com\",\r\n    \"password\": \"password123!\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"login"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all public boats without JWT auth (returns all public boats) Code 200.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4e57b0c7-0f3c-4b14-97ce-bd82b6dff18a",
+						"exec": [
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://moreauth2424.wl.r.appspot.com/boats",
+					"protocol": "https",
+					"host": [
+						"moreauth2424",
+						"wl",
+						"r",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"boats"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all boats with auth GCP",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://moreauth2424.wl.r.appspot.com/boats",
+					"protocol": "https",
+					"host": [
+						"moreauth2424",
+						"wl",
+						"r",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"boats"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post a boat || 201",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a45e1818-9011-4dca-aa62-8d740a65fe48",
+						"exec": [
+							"pm.environment.set(\"boat_id\", pm.response.json()[\"id\"]);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{id_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"name\":\"Test post\",\r\n\t\"type\":\"test boat\",\r\n\t\"length\": \"18\",\r\n    \"public\": \"public\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://moreauth2424.wl.r.appspot.com/boats",
+					"protocol": "https",
+					"host": [
+						"moreauth2424",
+						"wl",
+						"r",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"boats"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Retrieve posted boat while logged in",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c25268ed-2ac6-44e3-aa09-7e5ca6b33212",
+						"exec": [
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{id_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://moreauth2424.wl.r.appspot.com/boats/{{boat_id}}",
+					"protocol": "https",
+					"host": [
+						"moreauth2424",
+						"wl",
+						"r",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"boats",
+						"{{boat_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post a boat GCP link, first user || 201 Code",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6965b4c8-69e5-4824-8e0e-bf0dc3a8e8fa",
+						"exec": [
+							"pm.environment.set(\"boat_id2\", pm.response.json()[\"id\"]);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{id_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"name\":\"Another boat!\",\r\n\t\"type\":\"A bigger boat\",\r\n\t\"length\": 242424,\r\n    \"public\": \"public\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://moreauth2424.wl.r.appspot.com/boats",
+					"protocol": "https",
+					"host": [
+						"moreauth2424",
+						"wl",
+						"r",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"boats"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post a boat GCP invalid boat || 401",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7b46bc30-3f77-427a-a2c4-90d0e0368db4",
+						"exec": [
+							"\r",
+							"pm.test(\"Status code is 401\", function () {\r",
+							"    pm.response.to.have.status(401);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{id_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"name\":\"Testpost\",\r\n\t\"type\":\"testboat\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://moreauth2424.wl.r.appspot.com/boats",
+					"protocol": "https",
+					"host": [
+						"moreauth2424",
+						"wl",
+						"r",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"boats"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post a boat GCP invalid  JWT || 401",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a9c196bd-3818-4d8d-81d9-9e4283c5df94",
+						"exec": [
+							"\r",
+							"pm.test(\"Status code is 401\", function () {\r",
+							"    pm.response.to.have.status(401);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{id_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"name\":\"Testpost\",\r\n\t\"type\":\"testboat\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://moreauth2424.wl.r.appspot.com/boats",
+					"protocol": "https",
+					"host": [
+						"moreauth2424",
+						"wl",
+						"r",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"boats"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deleting a boat GCP || 204 code",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d65b9517-198f-4d5d-bf8b-de277d99f826",
+						"exec": [
+							"\r",
+							"pm.test(\"Status code is 204\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{id_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"name\":\"Testpost\",\r\n\t\"type\":\"testboat\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://moreauth2424.wl.r.appspot.com/boats/{{boat_id2}}",
+					"protocol": "https",
+					"host": [
+						"moreauth2424",
+						"wl",
+						"r",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"boats",
+						"{{boat_id2}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET at /owners/:owner_id/boats || 200",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "474468ad-e723-481b-b3dd-d57eb8e9da47",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{id_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "https://moreauth2424.wl.r.appspot.com/owners/hmmmm@yahoo.com/boats",
+					"protocol": "https",
+					"host": [
+						"moreauth2424",
+						"wl",
+						"r",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"owners",
+						"hmmmm@yahoo.com",
+						"boats"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Logging in with second account with no boats yet || 200",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b691c86f-116b-4f9c-b19d-9050cccecfa4",
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"pm.environment.set(\"id_token2\", jsonData.id_token);\r",
+							"\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"smallman@littlepeople.bigplanet\",\r\n    \"password\": \"password1234!\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://moreauth2424.wl.r.appspot.com/login",
+					"protocol": "https",
+					"host": [
+						"moreauth2424",
+						"wl",
+						"r",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"login"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get second user's boats (should be empty but 200 status code) || 200",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "fedbe2ca-3b42-481d-8111-546c9c59cc9c",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{id_token2}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://moreauth2424.wl.r.appspot.com/owners/smallman@littlepeople.bigplanet/boats",
+					"protocol": "https",
+					"host": [
+						"moreauth2424",
+						"wl",
+						"r",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"owners",
+						"smallman@littlepeople.bigplanet",
+						"boats"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Second user trying to get first user boats (should not be allowed) || 403 status code",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9d3765d7-7a29-4550-9fbb-0e95dce7f45c",
+						"exec": [
+							"pm.test(\"Status code is 403\", function () {\r",
+							"    pm.response.to.have.status(403);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{id_token2}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://moreauth2424.wl.r.appspot.com/owners/hmmmm@yahoo.com/boats",
+					"protocol": "https",
+					"host": [
+						"moreauth2424",
+						"wl",
+						"r",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"owners",
+						"hmmmm@yahoo.com",
+						"boats"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Second user trying to delete boat owned by first user (should not be allowed) || 403 status code",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "431b95e0-4905-4381-bc87-fbef476ab7a1",
+						"exec": [
+							"pm.test(\"Status code is 403\", function () {\r",
+							"    pm.response.to.have.status(403);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{id_token2}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://moreauth2424.wl.r.appspot.com/boats/{{boat_id}}",
+					"protocol": "https",
+					"host": [
+						"moreauth2424",
+						"wl",
+						"r",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"boats",
+						"{{boat_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post a boat GCP link, second user || 201 Code",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b2f9b7b6-ff4c-4023-83e8-cb00277141dd",
+						"exec": [
+							"pm.environment.set(\"boat_id3\", pm.response.json()[\"id\"]);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{id_token2}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"name\":\"THE BIGGEST BOAT AROUND\",\r\n\t\"type\":\"THANOS\",\r\n\t\"length\": 242547424,\r\n    \"public\": \"public\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://moreauth2424.wl.r.appspot.com/boats",
+					"protocol": "https",
+					"host": [
+						"moreauth2424",
+						"wl",
+						"r",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"boats"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Second user  getting their boat  || 200 status code",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d775b03f-51a0-46ef-a22e-b00c77325d77",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{id_token2}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://moreauth2424.wl.r.appspot.com/owners/smallman@littlepeople.bigplanet/boats/",
+					"protocol": "https",
+					"host": [
+						"moreauth2424",
+						"wl",
+						"r",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"owners",
+						"smallman@littlepeople.bigplanet",
+						"boats",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deleting second user's boat GCP || 204 code Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "add4ede7-e13e-40e9-8ef3-48b8ae030722",
+						"exec": [
+							"\r",
+							"pm.test(\"Status code is 204\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{id_token2}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"name\":\"Testpost\",\r\n\t\"type\":\"testboat\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://moreauth2424.wl.r.appspot.com/boats/{{boat_id3}}",
+					"protocol": "https",
+					"host": [
+						"moreauth2424",
+						"wl",
+						"r",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"boats",
+						"{{boat_id3}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete attempt at a non-existent boat GCP || 403 code",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6ce8b02b-fa6d-42ca-b5fb-90641ff19377",
+						"exec": [
+							"\r",
+							"pm.test(\"Status code is 403\", function () {\r",
+							"    pm.response.to.have.status(403);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{id_token2}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"name\":\"Testpost\",\r\n\t\"type\":\"testboat\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://moreauth2424.wl.r.appspot.com/boats/{{invalid_boat}}",
+					"protocol": "https",
+					"host": [
+						"moreauth2424",
+						"wl",
+						"r",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"boats",
+						"{{invalid_boat}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

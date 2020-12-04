@@ -1,0 +1,5 @@
+
+{
+    "GCLOUD_PROJECT": "oath2pointoh",
+    "DATA_BACKEND": "datastore"
+}
